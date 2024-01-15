@@ -1,0 +1,1 @@
+docker build -t my-alpine-curl-image:latest ./rest_runner
