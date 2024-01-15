@@ -4,27 +4,32 @@ services:
   gitlab:
     image: gitlab/gitlab-ce:latest
     container_name: dep-pipeline-gitlab
+    restart: always
+    hostname: 'gitlab.local.com'
     ports:
       - "80:80"
       - "443:443"
       - "22:22"
     environment:
       GITLAB_OMNIBUS_CONFIG: |
-        external_url 'http://gitlab'
         gitlab_rails['lfs_enabled'] = true
         gitlab_rails['initial_root_password'] = 'P@ssw0rd1234'
-    volumes:
-      - C:/Users/tqwda/OneDrive/Desktop/qiaowei/dev/Dep-pipeline/gitlab/config:/etc/gitlab
-      - C:/Users/tqwda/OneDrive/Desktop/qiaowei/dev/Dep-pipeline/gitlab/logs:/var/log/gitlab
-      - C:/Users/tqwda/OneDrive/Desktop/qiaowei/dev/Dep-pipeline/gitlab/data:/var/opt/gitlab
+        # Add any other gitlab.rb configuration here, each on its own line
+    # volumes:
+    #   - ./gitlab/config:/etc/gitlab
+    #   - ./gitlab/logs:/var/log/gitlab
+    #   - ./gitlab/data:/var/opt/gitlab
     networks:
       - dep-pipeline-network
 
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
+    depends_on:
+      - gitlab
     container_name: dep-pipeline-gitlab-runner
+    restart: always
     volumes:
-      - C:/Users/tqwda/OneDrive/Desktop/qiaowei/dev/Dep-pipeline/gitlab-runner/config:/etc/gitlab-runner
+      - ./gitlab-runner/config:/etc/gitlab-runner
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - dep-pipeline-network
@@ -34,13 +39,12 @@ services:
     container_name: dep-pipeline-nexus
     ports:
       - "8081:8081"
-      - "5000:5000"
+      - "5000:5000" # for docker hosted
+      - "5001:5001" # for docker proxy
     environment:
       - NEXUS_SECURITY_RANDOMPASSWORD=false
-      - NEXUS_SECURITY_INIT_ADMIN_ID=admin
-      - NEXUS_SECURITY_INIT_ADMIN_PASSWORD=myadminpassword
     volumes:
-      - C:/Users/tqwda/OneDrive/Desktop/qiaowei/dev/Dep-pipeline/nexus-data:/nexus-data
+      - ./nexus-data:/nexus-data
     networks:
       - dep-pipeline-network
 
