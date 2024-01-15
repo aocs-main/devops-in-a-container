@@ -34,11 +34,11 @@ services:
 3. You may modify the `GITLAB_OMNIBUS_CONFIG` accordingly. Details available [here](https://docs.gitlab.com/ee/administration/environment_variables.html).
 
 ## Using Code Quality and SAST from GitLab
-GitLab CE comes with Code Quality and SAST for CI/CD integration.  
-Once triggered, the shared runner will spawn another runner instance with a custom GitLab image from the official GitLab registry. The image contains the appropriate scanners for your project and will perform `local` scanning on the code repository. A report will be generated and can be downloaded from Gitlab.
+GitLab CE comes with Code Quality and SAST for CI/CD integration. Once triggered, the shared runner will spawn another runner instance with a custom GitLab image from the official GitLab registry. The image contains the appropriate scanners for your project and will perform `local` scanning on the code repository. A report will be generated and can be downloaded from Gitlab.
+Reference: [GitLab Docs](https://docs.gitlab.com/ee/topics/autodevops/)  
 
 To enable Code Quality and SAST in your project:  
-1. Add the following value to your project `.gitlab-ci.yml`:
+1. Add the following configs to your project `.gitlab-ci.yml`:
     ```yaml
     stages:
         - test
@@ -46,16 +46,16 @@ To enable Code Quality and SAST in your project:
         - template: Jobs/Code-Quality.gitlab-ci.yml
         - template: Jobs/SAST.gitlab-ci.yml
     ```
-1. Push the code to GitLab instance and wait for the pipeline to execute.
+1. Push the code to GitLab instance and wait for the pipeline to be completed.
 1. Go to `Build` > `Artifacts` and look for the corresponding jobs to download the scanner report.  
 
 ## Job Artifacts
-Source: [GitLab Docs](https://docs.gitlab.com/ee/administration/job_artifacts.html?tab=Docker)  
 The artifacts are stored by default in `/var/opt/gitlab/gitlab-rails/shared/artifacts`.
+Reference: [GitLab Docs](https://docs.gitlab.com/ee/administration/job_artifacts.html?tab=Docker)  
 
 1. Change using:
     ```
     gitlab_rails['artifacts_path'] = "/mnt/storage/artifacts"
     ```
 
-> Issue: Unable to upload artifact in CI/CD when GitLab is mounting `/data` to Windows directory. More info [here](https://stackoverflow.com/questions/65324410/job-ends-with-error-warning-uploading-artifacts-as-archive-to-coordinator).
+> Issue: Problem with uploading artifact in CI/CD when GitLab is mounting `/data` to a Windows directory. More info [here](https://stackoverflow.com/questions/65324410/job-ends-with-error-warning-uploading-artifacts-as-archive-to-coordinator).

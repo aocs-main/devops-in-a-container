@@ -2,11 +2,11 @@
 This document contains instructions to set up `Dep-pipeline` using the provided setup scripts.
 
 Additional Resources:
-1. [GitLab-ce](./GITLAB.md)
+1. [GitLab-ce, Code Quality & SAST](./GITLAB.md)
 1. [GitLab-Runner Template](./RUNNER.md)
-1. [Manual Setup](./MANUAL.md)
+1. [Manual set up for Dep-pipeline](./MANUAL.md)
 
-> Note: the pipeline can be resource-heavy, please monitor the services and adjust accordingly.
+> Note: the pipeline can be resource-heavy, please monitor and adjust the services accordingly.
 
 ## Setup Pipeline with Setup Scripts
 To speed up the setup process, the following scripts were provided to simplify the configuration procedure.
