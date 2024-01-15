@@ -72,6 +72,8 @@ To speed up the setup process, the following scripts were provided to simplify t
       (P@ssw0rd1234):
     ```
     ![nexus script cmd](./docs/script_setup_nexus.png)
+    
+    > Note: Global anonymous access is required to enable anonymous pull in respective repository settings. 
 
 3. Setup GitLab Runner  
     > Prerequisite:  
