@@ -1,5 +1,20 @@
-# Dep-pipeline
-This document contains instructions to set up `Dep-pipeline` using the provided setup scripts.
+# DEVOPS-IN-A-CONTAINER
+Devops-in-a-container is a Docker Compose tool designed to streamline the setup of essential DevOps tools for version control, continuous integration, and dependency management in software development projects. This repository simplifies the process of configuring GitLab Community Edition, GitLab Runner, and Nexus Repository on your local machine/project development server.
+
+## Key Features
+- Automated setup of GitLab CE, GitLab Runner, and Nexus Repository using Docker Compose.
+- Simplified configuration through included shell scripts, reducing the need for manual intervention.
+- Ideal for small project teams and individual developers aiming to establish version control, CI/CD pipelines, and a project dependency repository.
+
+## Target Audience
+- Small project teams and individual developers seeking an efficient and easy-to-use solution for DevOps tooling.
+- Projects or individuals operating in closed systems, where a self-contained DevOps setup is essential for seamless collaboration.
+
+## Why Devops-in-a-container
+In closed network environments, setting up version control, CI/CD pipelines, and library management can be challenging. Devops-in-a-container addresses this by providing an out-of-the-box solution, reducing the effort needed to establish an effective development environment.
+
+# Usage
+Follow the instructions in the documentation to quickly deploy and configure `Dep-pipeline` with GitLab CE, GitLab Runner, and Nexus Repository for your software development projects.
 
 Additional Resources:
 1. [GitLab-ce, Code Quality & SAST](./GITLAB.md)
@@ -81,7 +96,7 @@ To speed up the setup process, the following scripts were provided to simplify t
     
     ```sh
     # run the script
-    $ ./setup-gitlab.sh
+    $ ./setup-runner.sh
 
     # optional script configs, leave empty for default values 
     # when using the provided docker-compose.yaml
