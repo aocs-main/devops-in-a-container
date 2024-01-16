@@ -95,7 +95,7 @@ Setup Completed
 1. Shared runner is ready, refer to http://<gitlab.domain>/admin/runners for more options.
 
 2. Gitlab is accessible at http://localhost/
-     account : admin
+     account : root
      password: P@ssw0rd1234
      
 3. To access gitlab by hostname:

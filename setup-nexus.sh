@@ -38,7 +38,7 @@ setup_docker_repo_hosted() {
             }' \
             --write-out %{http_code} --silent --output /dev/null)
         if [[ "$status_code" -ne 201 ]] ; then
-            echo "Error: unable to create docker repo, please ensure nexus is in initial state with default admin password."
+            echo "Error: unable to create docker repo, please ensure nexus is online with the default admin password."
             exit 1
         else
             sleep 2
@@ -61,7 +61,7 @@ setup_docker_blob_store() {
                         }' \
             --write-out %{http_code} --silent --output /dev/null)
         if [[ "$status_code" -ne 204 ]] ; then
-            echo "Error: unable to create docker blob store, please ensure nexus is in initial state with default admin password."
+            echo "Error: unable to create docker blob store, please ensure nexus is online with the default admin password."
             exit 1
         else
             sleep 2
@@ -83,7 +83,7 @@ add_realms() {
         ]' \
         --write-out %{http_code} --silent --output /dev/null)
     if [[ "$status_code" -ne 204 ]] ; then
-        echo "Error: unable to add Docker Bearer Token to realms, please ensure nexus is in initial state with default admin password."
+        echo "Error: unable to add Docker Bearer Token to realms, please ensure nexus is online with the default admin password."
         exit 1
     else
         sleep 2
@@ -104,7 +104,7 @@ enable_anonymous_access() {
         ' \
         --write-out %{http_code} --silent --output /dev/null)
     if [[ "$status_code" -ne 200 ]] ; then
-        echo "Error: unable to add Docker Bearer Token to realms, please ensure nexus is in initial state with default admin password."
+        echo "Error: unable to add Docker Bearer Token to realms, please ensure nexus is online with the default admin password."
         exit 1
     else
         sleep 2
@@ -119,7 +119,7 @@ change_admin_password() {
         --data $admin_password \
         --write-out %{http_code} --silent --output /dev/null)
     if [[ "$status_code" -ne 204 ]] ; then
-        echo "Error: changing admin password, please ensure nexus is in initial state with default admin password."
+        echo "Error: changing admin password, please ensure nexus is online with the default admin password."
         exit 1
     else
         sleep 2
