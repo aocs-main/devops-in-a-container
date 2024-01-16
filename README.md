@@ -23,6 +23,9 @@ Additional Resources:
 
 > Note: the pipeline can be resource-heavy, please monitor and adjust the services accordingly.
 
+## Prerequisites
+If setting up on windows environment, ensure that WSL utility is installed. Refer to [WSL setup](https://learn.microsoft.com/en-us/windows/wsl/install).
+
 ## Setup Pipeline with Setup Scripts
 To speed up the setup process, the following scripts were provided to simplify the configuration procedure.
 
