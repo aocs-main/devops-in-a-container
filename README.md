@@ -37,6 +37,13 @@ To speed up the setup process, the following scripts were provided to simplify t
 
 > Note: the scripts are meant to initialize a base pipeline with necessary configs to get you started. For additional options, please configure through the respective admin portals.
 
+> Note: In order for the docker to use owned registry (e.g. nexus), add insecure registries in docker engine as below:
+```
+  "insecure-registries": [
+    "your_domain_name:port"
+  ] 
+```
+
 1. Start Containers
    ```sh
    # run the script
