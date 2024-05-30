@@ -20,7 +20,7 @@ initialise_config_toml() {
 retrieve_runner_token() {
     if docker inspect -f '{{.State.Running}}' "$container_name" &> /dev/null; then
         echo "Info: Container $container_name is running, creating new instance runner..."
-        new_runner_token=$(docker exec -it $container_name gitlab-rails runner "new_runner = Ci::Runner.create(runner_type:'instance_type', architecture:'amd64', platform:'linux', run_untagged:'true', registration_type:1, description:'Shared runner'); puts new_runner.token")
+        new_runner_token=$(docker exec -it $container_name gitlab-rails runner "new_runner = Ci::Runner.create(runner_type:'instance_type', run_untagged:'true', registration_type:1, description:'Shared runner'); puts new_runner.token")
         new_runner_token="${new_runner_token%"${new_runner_token##*[![:space:]]}"}"
         echo "Info: Got token $new_runner_token from gitlab." 
         sleep 2
