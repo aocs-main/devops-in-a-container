@@ -43,6 +43,15 @@ To speed up the setup process, the following scripts were provided to simplify t
     "your_domain_name:port"
   ] 
 ```
+> Note: In order for the artifacts to work, use volume mount instead of using bind mount. 
+```
+services:
+  gitlab:
+    volume:
+      gitlab-artifacts:path/to/your/gitlab/artifacts
+volume:
+  gitlab-artifacts:
+```
 
 1. Start Containers
    ```sh
