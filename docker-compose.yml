@@ -15,9 +15,10 @@ services:
         gitlab_rails['initial_root_password'] = 'P@ssw0rd1234'
         # Add any other gitlab.rb configuration here, each on its own line
     volumes:
-      - D:\gitlab/config:/etc/gitlab
-      - D:\gitlab/logs:/var/log/gitlab
-      - D:\gitlab/data:/var/opt/gitlab
+      - ./gitlab/config:/etc/gitlab
+      - ./gitlab/logs:/var/log/gitlab
+      - ./gitlab/data:/var/opt/gitlab
+      - gitlab_artifacts:/var/opt/gitlab/gitlab-rails/shared/artifacts  # Volume for artifacts
     networks:
       - dep-pipeline-network
   gitlab-runner:
@@ -38,7 +39,7 @@ services:
     environment:
       - NEXUS_SECURITY_RANDOMPASSWORD=false
     volumes:
-      - D:\nexus-data:/nexus-data
+      - ./nexus-data:/nexus-data
     networks:
       - dep-pipeline-network
   nginx:
@@ -51,10 +52,11 @@ services:
       - 5001:5001
       - 5000:5000
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
-      - D:\nginx:/etc/nginx/external/
+      - ./nginx:/etc/nginx/external/
     networks:
       - dep-pipeline-network
 networks:
   dep-pipeline-network:
     driver: bridge
+volumes:
+  gitlab_artifacts:
