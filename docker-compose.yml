@@ -53,6 +53,7 @@ services:
       - 5000:5000
     volumes:
       - ./nginx:/etc/nginx/external/
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - dep-pipeline-network
 networks:
