@@ -48,11 +48,11 @@ services:
     restart: always
     ports:
       - 443:443
-      - 8001:80
+      - 8081:80
       - 5001:5001
       - 5000:5000
     volumes:
-      - ./nginx:/etc/nginx/external/
+      - ./nginx/certs:/etc/nginx/external/
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     networks:
       - dep-pipeline-network
